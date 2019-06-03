@@ -57,7 +57,7 @@ class Gafes:
 
   def run(self):
     # get accuracy with all features
-    individual = [1 for i in range(len(X.columns))]
+    individual = [1 for i in range(len(self.X.columns))]
     print("Accuracy with all features: \t" +
     str(self.get_fitness(individual, self.X, self.y)) + "\n")
 
