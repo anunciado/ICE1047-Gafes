@@ -34,29 +34,38 @@ classifiers = {
     "AdaBoost": AdaBoostClassifier(),
 }
 
-class Gafes:
-  def __init__(self, df, n_pop, n_gen):
+class Utils:
+  def __init__(self, df):
     self.df = df
+    self.le = LabelEncoder()
+    
+  def encode(self, class_label):
+    le.fit(df[class_label])
+    y = pd.Series(le.transform(df[class_label]))
+    X = df.drop([class_label], axis=1)
+    return (X, y.values)
+   
+  def encoder(self):
+    return le
+  
+class Gafes:
+  def __init__(self, X, y, n_pop, n_gen):
+    self.X = X
+    self.y = y
     self.n_pop = n_pop
     self.n_gen = n_gen
 
   def run(self):
-    # encode labels column to numbers
-    le = LabelEncoder()
-    le.fit(df.iloc[:, -1])
-    y = le.transform(self.df.iloc[:, -1])
-    X = self.df.iloc[:, :-1]
-
     # get accuracy with all features
     individual = [1 for i in range(len(X.columns))]
     print("Accuracy with all features: \t" +
-    str(self.get_fitness(individual, X, y)) + "\n")
+    str(self.get_fitness(individual, self.X, self.y)) + "\n")
 
     # apply genetic algorithm
-    hof = self.genetic_algorithm(X, y)
+    hof = self.genetic_algorithm(self.X, self.y)
 
     # select the best individual
-    accuracy, individual, header = self.get_best_individual(hof, X, y)
+    accuracy, individual, header = self.get_best_individual(hof, self.X, self.y)
     print('Best Accuracy: \t' + str(accuracy))
     print('Number of Features in Subset: \t' + str(individual.count(1)))
     print('Individual: \t\t' + str(individual))
@@ -108,7 +117,7 @@ class Gafes:
     toolbox.register("population", tools.initRepeat, list,
                      toolbox.individual)
     toolbox.register("evaluate", self.get_fitness, X=X, y=y)
-    toolbox.register("mate", tools.cxOnePoint)
+    toolbox.register("mate", toolas.cxOnePoint)
     toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
     toolbox.register("select", tools.selTournament, tournsize=3)
 
