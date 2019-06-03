@@ -43,6 +43,7 @@ setup(
     url="https://github.com/anunciado/ICE1047-Gafes",
    install_requires=pkgs,
    dependency_links=new_links,
-   scripts=['gafes.py'],
+   packages=find_packages(),
+   include_package_data=True,
    license='MIT'
 )
