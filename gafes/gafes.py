@@ -117,7 +117,7 @@ class Gafes:
     toolbox.register("population", tools.initRepeat, list,
                      toolbox.individual)
     toolbox.register("evaluate", self.get_fitness, X=X, y=y)
-    toolbox.register("mate", toolas.cxOnePoint)
+    toolbox.register("mate", tools.cxOnePoint)
     toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
     toolbox.register("select", tools.selTournament, tournsize=3)
 
