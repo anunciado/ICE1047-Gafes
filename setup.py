@@ -1,5 +1,11 @@
 from setuptools import setup, find_packages
 
+def create_package_list(base_package):
+    return ([base_package] +
+            [base_package + '.' + pkg
+             for pkg
+             in find_packages(base_package)
+             if not exclude_package(pkg)])
 
 def install_deps():
     """Reads requirements.txt and preprocess it
@@ -43,7 +49,6 @@ setup(
     url="https://github.com/anunciado/ICE1047-Gafes",
    install_requires=pkgs,
    dependency_links=new_links,
-   packages=find_packages(),
-   include_package_data=True,
+   packages=create_package_list('gafes'),
    license='MIT'
 )
