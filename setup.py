@@ -42,5 +42,7 @@ setup(
     description="A tool for feature selection using genetic algorithms. ",
     url="https://github.com/anunciado/ICE1047-Gafes",
    install_requires=pkgs,
-   dependency_links=new_links
+   dependency_links=new_links,
+   scripts=['gafes.py'],
+   license='MIT'
 )
