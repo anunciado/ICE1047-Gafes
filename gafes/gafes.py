@@ -40,7 +40,7 @@ class Utils:
     self.le = LabelEncoder()
     
   def encode(self, class_label):
-    le.fit(df[class_label])
+    self.le.fit(df[class_label])
     y = pd.Series(le.transform(df[class_label]))
     X = df.drop([class_label], axis=1)
     return (X, y.values)
