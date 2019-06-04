@@ -6,7 +6,7 @@ A tool that use Genetic Algorithm for FEature Selection.
 
 Feature selection is the process of finding the most relevant variables for a predictive model. These techniques can be used to identify and remove unneeded, irrelevant and redundant features that do not contribute or decrease the accuracy of the predictive model. In nature, the genes of organisms tend to evolve over successive generations to better adapt to the environment. The Genetic Algorithm is an heuristic optimization method inspired by that procedures of natural evolution. In feature selection, the function to optimize is the generalization performance of a predictive model. More specifically, we want to minimize the error of the model on an independent data set not used to create the model.
 
-In this project we use [deap](https://deap.readthedocs.io/en/master/) for create the individuals with 'mutations' (subset of columns) and select the best individuals (highest accuracy) in [sklearn](https://scikit-learn.org/) models. You have to read your datase with [pandas](https://pandas.pydata.org/), encode your class labels, create a Gafes object with X, y, number of population (as n_pop) and number of genneration (as n_gen) and run Gafes. In the end, you will have the subset of features that have best accuracy in the population created. 
+In this project we use [deap](https://deap.readthedocs.io/en/master/) for create the individuals with 'mutations' (subset of columns) and select the best individuals (highest accuracy) in [sklearn](https://scikit-learn.org/) models. You have to read your dataset with [pandas](https://pandas.pydata.org/), encode your class labels, create a Gafes object with X, y, number of population (as n_pop) and number of genneration (as n_gen) and run Gafes. In the end, you will have the subset of features that have best accuracy in the population created. 
 
 ## Installation
 
@@ -35,7 +35,9 @@ from gafes.gafes import Utils
 
 # read dataframe from csv
 df = pd.read_csv('dataset.csv')
+# encode labels
 X, y = Utils(df).encode('class')
+# initialize gafes
 gf = Gafes(X=X, y=y, n_pop=20, n_gen=6)
 gf.run()
 ```
@@ -53,6 +55,10 @@ See also the list of [contributors](https://github.com/anunciado/ICE1047-Gafes/c
 ## License
 
 This project is licensed under the MIT - see the [LICENSE](LICENSE) file for details
+
+## Contributing
+
+Feel free to fork the repository, add your changes and give back by issuing a pull request. 
 
 ## References
 
